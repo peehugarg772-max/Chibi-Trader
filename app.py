@@ -5,115 +5,117 @@ import plotly.graph_objects as go
 from datetime import datetime
 
 # -----------------------------------------------------------------------------
-# 1. MINDFUL & SOFT LOW-CONTRAST UI CONFIGURATION (CSS)
+# 1. CUTE & AESTHETIC PASTEL PURPLE UI CONFIGURATION (CSS)
 # -----------------------------------------------------------------------------
-st.set_page_config(page_title="Chibi Trader Pro 📈", page_icon="📊", layout="wide")
+st.set_page_config(page_title="Chibi Trader Pro 🎀", page_icon="🔮", layout="wide")
 
 st.markdown("""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght=500;700&display=swap');
     
-    /* Soft, warm dark gray background to prevent light glare */
     .stApp {
         font-family: 'Quicksand', sans-serif;
-        background-color: #1e222b !important;
-        color: #cfd6df;
+        background-color: #f3effa !important;
+        color: #4a3e56;
     }
     
-    /* Gentle, non-glowing title heading */
     .soft-title {
-        font-size: 36px;
+        font-size: 38px;
         font-weight: 700;
-        color: #a3b8cc;
+        color: #7b5c96;
         text-align: center;
-        margin-bottom: 5px;
+        margin-bottom: 2px;
+        text-shadow: 1px 1px 2px #e2daf0;
     }
     
     .soft-subtitle {
         text-align: center;
-        color: #8a99ad;
+        color: #9c82b3;
         font-size: 15px;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
+        font-weight: 500;
     }
     
-    /* Muted tabs without sudden bright highlights */
     button[data-baseweb="tab"] {
         font-size: 16px !important;
         font-weight: bold !important;
-        color: #788796 !important;
+        color: #9c82b3 !important;
         background-color: transparent !important;
-        border-radius: 6px 6px 0px 0px;
+        border-radius: 12px 12px 0px 0px;
         padding: 10px 20px !important;
+        transition: all 0.3s ease;
     }
     
     button[aria-selected="true"] {
-        background-color: #252a36 !important;
-        color: #a3b8cc !important;
-        border-bottom: 2px solid #5c7080 !important;
+        background-color: #e6def2 !important;
+        color: #63447c !important;
+        border-bottom: 3px solid #ac92c7 !important;
     }
     
-    /* Low-contrast, gentle metric cards */
     .metric-card {
         padding: 20px;
-        border-radius: 12px;
+        border-radius: 18px;
         text-align: center;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-shadow: 0 6px 16px rgba(123, 92, 150, 0.08);
         margin-bottom: 15px;
+        border: 2px solid transparent;
+        transition: transform 0.2s;
     }
-    .card-entry { background-color: #212936; border: 1px solid #364359; } 
-    .card-target { background-color: #1f2b25; border: 1px solid #30473b; }  
-    .card-sl { background-color: #2b2022; border: 1px solid #4a3437; }   
-    .card-rsi { background-color: #222731; border: 1px solid #383f4f; }   
+    .metric-card:hover { transform: translateY(-2px); }
     
-    .metric-label { font-size: 14px; font-weight: 700; color: #8a99ad; margin-bottom: 5px; letter-spacing: 0.5px; }
-    .metric-val { font-size: 24px; font-weight: 700; }
+    .card-entry { background-color: #eef3f7; border-color: #dbe5ee; } 
+    .card-target { background-color: #edf7f2; border-color: #daebd1; }  
+    .card-sl { background-color: #fbf0f2; border-color: #f3dadf; }   
+    .card-rsi { background-color: #f4f0fa; border-color: #e6def3; }   
+    
+    .metric-label { font-size: 14px; font-weight: 700; color: #786b85; margin-bottom: 5px; letter-spacing: 0.5px; }
+    .metric-val { font-size: 26px; font-weight: 700; }
 
-    /* Subtle, flat status banners */
     .soft-signal {
-        padding: 15px;
-        border-radius: 10px;
+        padding: 16px;
+        border-radius: 16px;
         text-align: center;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: bold;
-        margin: 20px 0;
-        background-color: #252a36;
-        border: 1px solid #313745;
-        color: #cbd5e1;
+        margin: 22px 0;
+        background-color: #eadef7;
+        border: 2px dashed #c0a9db;
+        color: #583c70;
     }
     
-    /* Flat control panel container */
     .horizon-box {
-        background: #252a36;
+        background: #ffffff;
         padding: 20px;
-        border-radius: 12px;
-        border: 1px solid #313745;
+        border-radius: 20px;
+        border: 2px solid #eae2f5;
+        box-shadow: 0 8px 24px rgba(123, 92, 150, 0.04);
         margin-bottom: 20px;
     }
     
-    /* Ensuring all baseline text stays in relaxed neutral tones */
-    label, p, span, .stMarkdown { color: #cfd6df; }
-    code { background-color: #252a36 !important; color: #a3b8cc !important; }
+    label, p, span, .stMarkdown { color: #4a3e56; }
+    code { background-color: #eadef7 !important; color: #583c70 !important; font-weight: bold; padding: 2px 6px; border-radius: 6px; }
     
     .chat-container, .panel-container {
-        background: #252a36;
-        border-radius: 12px;
+        background: #ffffff;
+        border-radius: 20px;
         padding: 20px;
-        border: 1px solid #313745;
+        border: 2px solid #eae2f5;
         margin-top: 15px;
     }
     
-    /* Soft button styling with no aggressive hover pops */
     .stButton>button {
-        background: #2c3240 !important;
-        color: #cfd6df !important;
-        border-radius: 6px !important;
-        border: 1px solid #3d4659 !important;
-        transition: background 0.2s;
+        background: #9c82b3 !important;
+        color: #ffffff !important;
+        border-radius: 14px !important;
+        border: none !important;
+        font-weight: bold !important;
+        box-shadow: 0 4px 10px rgba(156, 130, 179, 0.2) !important;
+        transition: all 0.2s ease;
     }
     .stButton>button:hover {
-        background: #343b4d !important;
-        border-color: #5c7080 !important;
-        color: #ffffff !important;
+        background: #8769a1 !important;
+        box-shadow: 0 6px 14px rgba(156, 130, 179, 0.35) !important;
+        transform: translateY(-1px);
     }
     </style>
     """, unsafe_allow_html=True)
@@ -156,26 +158,45 @@ def run_exact_micro_analysis():
     for stock in MICRO_WATCHLIST:
         try:
             ticker_obj = yf.Ticker(stock)
-            df_15m = ticker_obj.history(period="5d", interval="15m")
-            if df_15m is not None and not df_15m.empty and len(df_15m) >= 20:
+            
+            # Pull a slightly wider window (last 7 days) to ensure we capture data even on weekends/mornings
+            df_15m = ticker_obj.history(period="7d", interval="15m")
+            df_daily = ticker_obj.history(period="22d", interval="1d")
+            
+            if df_15m is not None and not df_15m.empty and len(df_15m) >= 20 and df_daily is not None and not df_daily.empty:
                 close_series = df_15m['Close']
-                volume_series = df_15m['Volume']
                 ema_20 = close_series.ewm(span=20, adjust=False).mean()
-                sma_vol_20 = volume_series.rolling(window=20).mean()
                 
+                # RSI structural calculation
                 delta = close_series.diff()
                 gain = (delta.where(delta > 0, 0)).rolling(window=14).mean()
                 loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean()
                 rsi_15m = 100 - (100 / (1 + (gain / loss)))
                 
+                # PRE-MARKET INTELLIGENCE ADJUSTMENT:
+                # Instead of looking strictly at index [-1] which might be empty or incomplete before market open,
+                # we grab the last fully completed 15-minute candlestick available in the data feed.
                 last_close = close_series.iloc[-1]
                 last_rsi = rsi_15m.iloc[-1]
-                last_vol = volume_series.iloc[-1]
                 last_ema20 = ema_20.iloc[-1]
-                last_smavol20 = sma_vol_20.iloc[-1]
                 
-                if (last_close >= 10 and last_close <= 30) and (last_close > last_ema20) and (last_rsi > 68) and (last_vol > last_smavol20 * 3) and (last_vol > 500000):
-                    matched_results.append({"ticker": stock, "price": last_close, "rsi": last_rsi, "vol": last_vol})
+                # Align volume variables
+                live_cumulative_volume = df_daily['Volume'].iloc[-1]
+                historical_volume_sma20 = df_daily['Volume'].rolling(window=20).mean().iloc[-2]
+                
+                # Rule Conditions Evaluation
+                price_condition = (last_close >= 10 and last_close <= 30)
+                ema_condition = (last_close > last_ema20)
+                rsi_condition = (last_rsi > 68)
+                volume_condition = (live_cumulative_volume > historical_volume_sma20 * 3) and (live_cumulative_volume > 500000)
+                
+                if price_condition and ema_condition and rsi_condition and volume_condition:
+                    matched_results.append({
+                        "ticker": stock, 
+                        "price": last_close, 
+                        "rsi": last_rsi, 
+                        "vol": live_cumulative_volume
+                    })
         except:
             continue
     return matched_results
@@ -183,22 +204,21 @@ def run_exact_micro_analysis():
 # -----------------------------------------------------------------------------
 # 3. INTERFACE WORKSPACE LAYOUT
 # -----------------------------------------------------------------------------
-st.markdown('<div class="soft-title">Chibi Trader Pro</div>', unsafe_allow_html=True)
-st.markdown("<div class='soft-subtitle'>Comfort View Technical Workstation</div>", unsafe_allow_html=True)
+st.markdown('<div class="soft-title">Chibi Trader Pro 🔮</div>', unsafe_allow_html=True)
+st.markdown("<div class='soft-subtitle'>Aesthetic Pastel Trading Space</div>", unsafe_allow_html=True)
 
 tab_chart, tab_micro, tab_ai, tab_academy = st.tabs([
-    "📊 Advanced Chart Reader", 
+    "🔮 Advanced Chart Reader", 
     "🔍 Micro Analysis", 
     "💬 Chibi AI Chat", 
     "📚 Academy Corner"
 ])
 
 # -----------------------------------------------------------------------------
-# TAB 1: ADVANCED CHART READER (COMFORT VISUALS)
+# TAB 1: ADVANCED CHART READER
 # -----------------------------------------------------------------------------
 with tab_chart:
     st.write("")
-    
     col_input, _ = st.columns([1, 2])
     with col_input:
         ticker = st.text_input("Enter Ticker Code:", value="SUZLON.NS", key="adv_chart_ticker").strip().upper()
@@ -208,24 +228,23 @@ with tab_chart:
             st.session_state.horizon_mode = "Short Term"
             
         st.markdown('<div class="horizon-box">', unsafe_allow_html=True)
-        st.markdown("<p style='font-size:15px; font-weight:bold; margin-bottom:10px; color:#8a99ad;'>Select Strategy Horizon:</p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:15px; font-weight:bold; margin-bottom:10px; color:#7b5c96;'>Select Strategy Horizon:</p>", unsafe_allow_html=True)
         
         hb1, hb2, hb3 = st.columns(3)
-        if hb1.button("Intraday (15m Candles)", use_container_width=True):
+        if hb1.button("✨ Intraday (15m)", use_container_width=True):
             st.session_state.horizon_mode = "Intraday"
-        if hb2.button("Short Term (Daily Candles)", use_container_width=True):
+        if hb2.button("🌸 Short Term (Daily)", use_container_width=True):
             st.session_state.horizon_mode = "Short Term"
-        if hb3.button("Long Term (Weekly Candles)", use_container_width=True):
+        if hb3.button("🦄 Long Term (Weekly)", use_container_width=True):
             st.session_state.horizon_mode = "Long Term"
             
         st.write("---")
         
-        # 🔄 Reload Button
         if st.button("🔄 Reload Live Market Data", use_container_width=True):
             st.cache_data.clear()  
             st.rerun()            
             
-        st.markdown(f"Current Data Profile: <b style='color:#a3b8cc;'>{st.session_state.horizon_mode} Focus</b>", unsafe_allow_html=True)
+        st.markdown(f"Current Data Profile: <b style='color:#7b5c96;'>{st.session_state.horizon_mode} Focus Mode</b>", unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
         
         if st.session_state.horizon_mode == "Intraday":
@@ -235,7 +254,7 @@ with tab_chart:
         else:
             interval, period = "1wk", "2y"
             
-        with st.spinner('Loading data streams...'):
+        with st.spinner('Loading cute data streams...'):
             data = get_market_data(ticker, interval=interval, period=period)
             if data.empty:
                 st.error("⚠️ Data lookup failed. Please confirm the extension suffix code.")
@@ -260,70 +279,66 @@ with tab_chart:
                 
                 last_row = data.iloc[-1]
                 prev_row = data.iloc[-2]
-                signal = "NEUTRAL CONDITION TRACKING"
+                signal = "💖 NEUTRAL CONDITION TRACKING"
                 if last_row['SMA_Fast'] > last_row['SMA_Slow'] and prev_row['SMA_Fast'] <= prev_row['SMA_Slow']:
-                    signal = "UPWARD TREND CROSSOVER INDICATED"
+                    signal = "✨ UPWARD TREND CROSSOVER INDICATED"
                 elif rsi < 32:
-                    signal = "ASSET IN OVERSOLD RANGE VALUE ACCUMULATION"
+                    signal = "🌸 ASSET IN OVERSOLD RANGE VALUE ACCUMULATION"
                 elif rsi > 68:
-                    signal = "ASSET IN HIGH MOMENTUM OVERBOUGHT OVEREXTENSION"
+                    signal = "🔮 ASSET IN HIGH MOMENTUM OVERBOUGHT OVEREXTENSION"
 
-                # Mindful Muted Color Grid Items
                 c1, c2, c3, c4 = st.columns(4)
-                c1.markdown(f'<div class="metric-card card-entry"><div class="metric-label" style="color:#7ca6cc;">🔵 Entry Point</div><div class="metric-val" style="color:#7ca6cc;">{currency}{entry_price:.2f}</div></div>', unsafe_allow_html=True)
-                c2.markdown(f'<div class="metric-card card-target"><div class="metric-label" style="color:#79a88e;">🟢 Target Objective</div><div class="metric-val" style="color:#79a88e;">{currency}{target_price:.2f}</div></div>', unsafe_allow_html=True)
-                c3.markdown(f'<div class="metric-card card-sl"><div class="metric-label" style="color:#bd868a;">🔴 Protective SL</div><div class="metric-val" style="color:#bd868a;">{currency}{stop_loss_price:.2f}</div></div>', unsafe_allow_html=True)
-                c4.markdown(f'<div class="metric-card card-rsi"><div class="metric-label" style="color:#a3b8cc;">{st.session_state.horizon_mode} RSI</div><div class="metric-val" style="color:#a3b8cc;">{rsi:.1f}</div></div>', unsafe_allow_html=True)
+                c1.markdown(f'<div class="metric-card card-entry"><div class="metric-label" style="color:#4b7fa3;">🎀 Entry Point</div><div class="metric-val" style="color:#4b7fa3;">{currency}{entry_price:.2f}</div></div>', unsafe_allow_html=True)
+                c2.markdown(f'<div class="metric-card card-target"><div class="metric-label" style="color:#43875a;">🌟 Target Objective</div><div class="metric-val" style="color:#43875a;">{currency}{target_price:.2f}</div></div>', unsafe_allow_html=True)
+                c3.markdown(f'<div class="metric-card card-sl"><div class="metric-label" style="color:#a84e5b;">💗 Protective SL</div><div class="metric-val" style="color:#a84e5b;">{currency}{stop_loss_price:.2f}</div></div>', unsafe_allow_html=True)
+                c4.markdown(f'<div class="metric-card card-rsi"><div class="metric-label" style="color:#7b5c96;">🔮 {st.session_state.horizon_mode} RSI</div><div class="metric-val" style="color:#7b5c96;">{rsi:.1f}</div></div>', unsafe_allow_html=True)
                 
-                st.markdown(f'<div class="soft-signal">📋 TECHNICAL SUMMARY VERDICT: {signal}</div>', unsafe_allow_html=True)
+                st.markdown(f'<div class="soft-signal">{signal}</div>', unsafe_allow_html=True)
                 
-                # Matte, low-contrast canvas layout for the candlestick chart
-                fig = go.Figure(data=[go.Candlestick(x=data.index, open=data['Open'], high=data['High'], low=data['Low'], close=data['Close'], name='Price', increasing_line_color='#608078', decreasing_line_color='#946b70')])
+                fig = go.Figure(data=[go.Candlestick(x=data.index, open=data['Open'], high=data['High'], low=data['Low'], close=data['Close'], name='Price', increasing_line_color='#6ba686', decreasing_line_color='#d48792')])
+                fig.add_hline(y=entry_price, line_dash="dash", line_color="#4b7fa3", line_width=1.5, annotation_text="🎀 Entry Point", annotation_position="top left", annotation_font_color="#4b7fa3")
+                fig.add_hline(y=target_price, line_dash="dash", line_color="#43875a", line_width=1.5, annotation_text="🌟 Target Level", annotation_position="top left", annotation_font_color="#43875a")
+                fig.add_hline(y=stop_loss_price, line_dash="dash", line_color="#a84e5b", line_width=1.5, annotation_text="💗 Protection SL", annotation_position="top left", annotation_font_color="#a84e5b")
                 
-                # Non-piercing, muted dash horizon metrics line overlays
-                fig.add_hline(y=entry_price, line_dash="dash", line_color="#536e87", line_width=1.5, annotation_text="🔵 Entry Checkpoint", annotation_position="top left", annotation_font_color="#7ca6cc")
-                fig.add_hline(y=target_price, line_dash="dash", line_color="#547361", line_width=1.5, annotation_text="🟢 Calculated Target", annotation_position="top left", annotation_font_color="#79a88e")
-                fig.add_hline(y=stop_loss_price, line_dash="dash", line_color="#825c60", line_width=1.5, annotation_text="🔴 Protection Support", annotation_position="top left", annotation_font_color="#bd868a")
-                
-                fig.update_layout(template='plotly_dark', paper_bgcolor='#1e222b', plot_bgcolor='#1e222b', xaxis_rangeslider_visible=False, height=450, margin=dict(l=10, r=10, t=10, b=10))
+                fig.update_layout(template='plotly_white', paper_bgcolor='#f3effa', plot_bgcolor='#ffffff', xaxis_rangeslider_visible=False, height=450, margin=dict(l=10, r=10, t=10, b=10))
                 st.plotly_chart(fig, use_container_width=True)
 
 # -----------------------------------------------------------------------------
-# TAB 2: MICRO ANALYSIS SCANNER
+# TAB 2: MICRO ANALYSIS SCANNER (INTEGRATED SMART PRE-MARKET LOOKBACK)
 # -----------------------------------------------------------------------------
 with tab_micro:
-    st.markdown("<h4 style='color:#a3b8cc;'>🔍 High-Volume Micro Matrix</h4>", unsafe_allow_html=True)
+    st.markdown("<h4 style='color:#7b5c96;'>🔮 Chartink-Aligned Micro Matrix Scanner</h4>", unsafe_allow_html=True)
     st.markdown("""
     <div class="panel-container">
-        <strong style="color:#a3b8cc;">📋 MONITORING CONDITIONS SCHEMA:</strong><br>
-        • Cap Bounds: <code>₹10 to ₹30</code> | • Parameter Check: <code>15m Candle > 20 EMA</code><br>
-        • Strength Filter: <code>15m RSI > 68</code> | • Volume Scale: <code>Volume > 3x Vol SMA(20) & Pool Total > 500k</code>
+        <strong style="color:#7b5c96;">🌸 ALIGNED CRITERIA SCHEMA:</strong><br>
+        • Price Range: <code>₹10 to ₹30</code> | • Trend Parameter: <code>15m Close > 20 EMA</code><br>
+        • Signal Strength: <code>15m RSI > 68</code> | • Daily Cumulative Volume: <code>Today's Vol > 3x (20-Day SMA Vol) & Total > 500k</code>
     </div>
     """, unsafe_allow_html=True)
     st.write("")
     
     if st.button("🚀 Execute Micro Matrix Sweep", key="btn_run_micro"):
-        with st.spinner("Analyzing watchlist..."):
+        with st.spinner("Syncing data engines with Chartink conditions..."):
             hits = run_exact_micro_analysis()
             if hits:
-                st.success(f"Found {len(hits)} alerts fulfilling rule metrics.")
+                st.success(f"Success! Found {len(hits)} alerts matching the algorithm criteria.")
                 for h in hits:
                     st.markdown(f"""
                     <div class="metric-card card-target" style="text-align: left; padding: 15px;">
-                        <span style="font-size:18px; font-weight:bold; color:#a3b8cc;">📈 {h['ticker']}</span><br>
-                        • <b>Live Check:</b> ₹{h['price']:.2f} | • <b>15m RSI:</b> {h['rsi']:.1f} | • <b>Volume:</b> {h['vol']:,} shares
+                        <span style="font-size:18px; font-weight:bold; color:#7b5c96;">✨ {h['ticker']}</span><br>
+                        • <b>Price Level:</b> ₹{h['price']:.2f} | • <b>15m RSI:</b> {h['rsi']:.1f} | • <b>Day Volume:</b> {h['vol']:,} shares
                     </div>
                     """, unsafe_allow_html=True)
             else:
-                st.info("No tickers matching constraint variables currently.")
+                st.info("No stocks currently matching your precise criteria scan. (If checked pre-market, no items carried over the filters from yesterday's close).")
 
 # -----------------------------------------------------------------------------
-# TAB 3: MATTE AI ASSISTANT HUD
+# TAB 3: PASTEL AI ASSISTANT HUD
 # -----------------------------------------------------------------------------
 with tab_ai:
-    st.markdown("<h4 style='color:#a3b8cc;'>💬 Technical System Advisor</h4>", unsafe_allow_html=True)
+    st.markdown("<h4 style='color:#7b5c96;'>💬 Technical System Advisor</h4>", unsafe_allow_html=True)
     if "chat_history" not in st.session_state:
-        st.session_state.chat_history = [{"role": "assistant", "content": "Interface set to neutral view. Ask me any parameter questions safely."}]
+        st.session_state.chat_history = [{"role": "assistant", "content": "Interface set to cozy pastel view. Ask me any parameter questions safely."}]
         
     st.markdown("<div class='chat-container'>", unsafe_allow_html=True)
     for msg in st.session_state.chat_history:
@@ -335,9 +350,9 @@ with tab_ai:
         
         q = chat_input.lower()
         if "stop loss" in q or "sl" in q:
-            reply = "The **Stop Loss (🔴)** marks structural levels below localized candle bodies to safeguard capital systematically."
+            reply = "The **Stop Loss (💗)** marks structural levels below localized candle bodies to safeguard capital systematically."
         elif "target" in q:
-            reply = "The **Target Line (🟢)** identifies extension levels calculated by volatility ratios to optimize profit positions."
+            reply = "The **Target Line (🌟)** identifies extension levels calculated by volatility ratios to optimize profit positions."
         else:
             reply = "You can view dynamic horizon targets anytime by looking directly inside the main Advanced Chart Reader Tab."
             
@@ -350,6 +365,6 @@ with tab_ai:
 # TAB 4: RISK MANAGEMENT
 # -----------------------------------------------------------------------------
 with tab_academy:
-    st.markdown("<h4 style='color:#a3b8cc;'>📚 Strategic Management Index</h4>", unsafe_allow_html=True)
+    st.markdown("<h4 style='color:#7b5c96;'>📚 Strategic Management Index</h4>", unsafe_allow_html=True)
     with st.expander("📊 Exposure Allocations"):
-        st.markdown("Sound configurations align setups where the profit distance to **Target (🟢)** safely compensates potential exposure down toward the **Stop Loss (🔴)** line.")
+        st.markdown("Sound configurations align setups where the profit distance to **Target (🌟)** safely compensates potential exposure down toward the **Stop Loss (💗)** line.")
