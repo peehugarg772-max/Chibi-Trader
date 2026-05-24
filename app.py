@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 from datetime import datetime
 
 # -----------------------------------------------------------------------------
-# 1. ULTRA-CUTE CUSTOM CHIBI CARTOON CHARACTERS UI CONFIGURATION (CSS)
+# 1. ULTRA-CUTE BLUSHING CHARACTERS & CLOUDS WITH FACES UI CONFIGURATION (CSS)
 # -----------------------------------------------------------------------------
 st.set_page_config(page_title="Chibi Trader Pro 🎀", page_icon="🦋", layout="wide")
 
@@ -37,19 +37,19 @@ st.markdown("""
     .chibi-item {
         position: absolute;
         bottom: -100px;
-        font-size: 55px; /* Larger size for impact */
-        opacity: 0.35;
-        animation: floatUp 16s linear infinite;
-        filter: drop-shadow(0px 6px 8px rgba(123, 92, 150, 0.15));
+        font-size: 42px;
+        opacity: 0.28;
+        animation: floatUp 15s linear infinite;
+        filter: drop-shadow(0px 4px 6px rgba(123, 92, 150, 0.1));
     }
 
-    /* Distributing different ultra-cute smiling elements with faces */
+    /* Distributing different cute smiling elements across coordinates with varying speeds */
     .chibi-1 { left: 4%; animation-duration: 13s; animation-delay: 0s; }
-    .chibi-2 { left: 14%; animation-duration: 17s; animation-delay: 2s; font-size: 60px; }
+    .chibi-2 { left: 14%; animation-duration: 17s; animation-delay: 2s; font-size: 46px; }
     .chibi-3 { left: 28%; animation-duration: 15s; animation-delay: 5s; }
-    .chibi-4 { left: 42%; animation-duration: 14s; animation-delay: 1s; font-size: 65px; }
+    .chibi-4 { left: 42%; animation-duration: 14s; animation-delay: 1s; font-size: 52px; }
     .chibi-5 { left: 58%; animation-duration: 19s; animation-delay: 4s; }
-    .chibi-6 { left: 72%; animation-duration: 12s; animation-delay: 0s; font-size: 58px; }
+    .chibi-6 { left: 72%; animation-duration: 12s; animation-delay: 0s; font-size: 44px; }
     .chibi-7 { left: 85%; animation-duration: 16s; animation-delay: 3s; }
     .chibi-8 { left: 93%; animation-duration: 18s; animation-delay: 6s; }
 
@@ -59,10 +59,10 @@ st.markdown("""
             opacity: 0;
         }
         10% {
-            opacity: 0.45;
+            opacity: 0.38;
         }
         90% {
-            opacity: 0.45;
+            opacity: 0.38;
         }
         100% {
             transform: translateY(-118vh) rotate(360deg);
@@ -77,7 +77,7 @@ st.markdown("""
     }
 
     .soft-title {
-        font-size: 46px;
+        font-size: 44px;
         font-weight: 700;
         color: #7b5c96;
         text-align: center;
@@ -88,18 +88,18 @@ st.markdown("""
     .soft-subtitle {
         text-align: center;
         color: #9c82b3;
-        font-size: 17px;
+        font-size: 16px;
         margin-bottom: 25px;
         font-weight: 500;
     }
     
     button[data-baseweb="tab"] {
-        font-size: 17px !important;
+        font-size: 16px !important;
         font-weight: bold !important;
         color: #9c82b3 !important;
         background-color: transparent !important;
         border-radius: 12px 12px 0px 0px;
-        padding: 12px 24px !important;
+        padding: 10px 20px !important;
         transition: all 0.3s ease;
     }
     
@@ -110,11 +110,11 @@ st.markdown("""
     }
     
     .metric-card {
-        padding: 24px;
-        border-radius: 20px;
+        padding: 20px;
+        border-radius: 18px;
         text-align: center;
-        box-shadow: 0 8px 20px rgba(123, 92, 150, 0.1);
-        margin-bottom: 18px;
+        box-shadow: 0 6px 16px rgba(123, 92, 150, 0.08);
+        margin-bottom: 15px;
         border: 2px solid transparent;
         background-color: #ffffff;
     }
@@ -124,16 +124,16 @@ st.markdown("""
     .card-sl { background-color: #fbf0f2; border-color: #f3dadf; }   
     .card-rsi { background-color: #f4f0fa; border-color: #e6def3; }   
     
-    .metric-label { font-size: 15px; font-weight: 700; color: #786b85; margin-bottom: 6px; }
-    .metric-val { font-size: 28px; font-weight: 700; }
+    .metric-label { font-size: 14px; font-weight: 700; color: #786b85; margin-bottom: 5px; }
+    .metric-val { font-size: 26px; font-weight: 700; }
 
     .soft-signal {
-        padding: 18px;
-        border-radius: 18px;
+        padding: 16px;
+        border-radius: 16px;
         text-align: center;
-        font-size: 17px;
+        font-size: 16px;
         font-weight: bold;
-        margin: 24px 0;
+        margin: 22px 0;
         background-color: #eadef7;
         border: 2px dashed #c0a9db;
         color: #583c70;
@@ -141,11 +141,11 @@ st.markdown("""
     
     .horizon-box {
         background: #ffffff;
-        padding: 24px;
-        border-radius: 24px;
+        padding: 20px;
+        border-radius: 20px;
         border: 2px solid #eae2f5;
-        box-shadow: 0 10px 30px rgba(123, 92, 150, 0.05);
-        margin-bottom: 24px;
+        box-shadow: 0 8px 24px rgba(123, 92, 150, 0.04);
+        margin-bottom: 20px;
     }
     
     label, p, span, .stMarkdown { color: #4a3e56; }
@@ -153,33 +153,31 @@ st.markdown("""
     
     .chat-container, .panel-container {
         background: #ffffff;
-        border-radius: 24px;
-        padding: 24px;
+        border-radius: 20px;
+        padding: 20px;
         border: 2px solid #eae2f5;
-        margin-top: 18px;
+        margin-top: 15px;
     }
     
     .stButton>button {
         background: #9c82b3 !important;
         color: #ffffff !important;
-        border-radius: 16px !important;
+        border-radius: 14px !important;
         border: none !important;
         font-weight: bold !important;
-        padding: 12px 28px !important;
-        font-size: 16px !important;
-        box-shadow: 0 5px 12px rgba(156, 130, 179, 0.25) !important;
+        box-shadow: 0 4px 10px rgba(156, 130, 179, 0.2) !important;
     }
     </style>
 
     <div class="floating-background">
-        <div class="chibi-item chibi-1">😊🐼</div>
-        <div class="chibi-item chibi-2">Smiling Cloud 😊☁️</div>
-        <div class="chibi-item chibi-3">Cute Fairy 😊🧚‍♀️</div>
-        <div class="chibi-item chibi-4">Smiling Bear 😊🐻</div>
-        <div class="chibi-item chibi-5">Cute Butterfly 😊🦋</div>
-        <div class="chibi-item chibi-6">Cute Blossom 😊🌸</div>
-        <div class="chibi-item chibi-7">Smiling Unicorn 😊🦄</div>
-        <div class="chibi-item chibi-8">Smiling Cloud 😊☁️</div>
+        <div class="chibi-item chibi-1">🐼</div>
+        <div class="chibi-item chibi-2">☁️</div>
+        <div class="chibi-item chibi-3">🧚‍♀️</div>
+        <div class="chibi-item chibi-4">🐻</div>
+        <div class="chibi-item chibi-5">🦋</div>
+        <div class="chibi-item chibi-6">🌸</div>
+        <div class="chibi-item chibi-7">🦄</div>
+        <div class="chibi-item chibi-8">☁️</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -260,10 +258,10 @@ def run_exact_micro_analysis():
 # 3. INTERFACE WORKSPACE LAYOUT
 # -----------------------------------------------------------------------------
 st.markdown('<div class="soft-title">Chibi Trader Pro 🎀☁️</div>', unsafe_allow_html=True)
-st.markdown("<div class='soft-subtitle'>Max-Cute Blushing Characters & Magical Secret Garden Lounge</div>", unsafe_allow_html=True)
+st.markdown("<div class='soft-subtitle'>Magical Fairy Garden & Cute Blushing Character Lounge</div>", unsafe_allow_html=True)
 
 tab_chart, tab_micro, tab_ai, tab_academy = st.tabs([
-    "Cloud with Face ☁️ Chart Reader", 
+    "☁️ Advanced Chart Reader", 
     "🔍 Micro Analysis", 
     "💬 Chibi AI Chat", 
     "📚 Academy Corner"
@@ -283,14 +281,14 @@ with tab_chart:
             st.session_state.horizon_mode = "Short Term"
             
         st.markdown('<div class="horizon-box">', unsafe_allow_html=True)
-        st.markdown("<p style='font-size:16px; font-weight:bold; margin-bottom:12px; color:#7b5c96;'>Select Strategy Horizon:</p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:15px; font-weight:bold; margin-bottom:10px; color:#7b5c96;'>Select Strategy Horizon:</p>", unsafe_allow_html=True)
         
         hb1, hb2, hb3 = st.columns(3)
-        if hb1.button("Cute Butterfly 🦋 Intraday (15m)", use_container_width=True):
+        if hb1.button("🦋 Intraday (15m)", use_container_width=True):
             st.session_state.horizon_mode = "Intraday"
-        if hb2.button("Cute Blossom 🌸 Short Term (Daily)", use_container_width=True):
+        if hb2.button("🌸 Short Term (Daily)", use_container_width=True):
             st.session_state.horizon_mode = "Short Term"
-        if hb3.button("Smiling Unicorn 🦄 Long Term (Weekly)", use_container_width=True):
+        if hb3.button("🦄 Long Term (Weekly)", use_container_width=True):
             st.session_state.horizon_mode = "Long Term"
             
         st.write("---")
@@ -336,20 +334,90 @@ with tab_chart:
                 prev_row = data.iloc[-2]
                 signal = "💖 NEUTRAL CONDITION TRACKING"
                 if last_row['SMA_Fast'] > last_row['SMA_Slow'] and prev_row['SMA_Fast'] <= prev_row['SMA_Slow']:
-                    signal = "Cute Butterfly 🦋 UPWARD TREND CROSSOVER INDICATED"
+                    signal = "🦋 UPWARD TREND CROSSOVER INDICATED"
                 elif rsi < 32:
-                    signal = "Cute Blossom 🌸 ASSET IN OVERSOLD RANGE VALUE ACCUMULATION"
+                    signal = "🌸 ASSET IN OVERSOLD RANGE VALUE ACCUMULATION"
                 elif rsi > 68:
-                    signal = "Smiling Fairy 🧚‍♀️ ASSET IN HIGH MOMENTUM OVERBOUGHT OVEREXTENSION"
+                    signal = "🧚‍♀️ ASSET IN HIGH MOMENTUM OVERBOUGHT OVEREXTENSION"
 
                 c1, c2, c3, c4 = st.columns(4)
-                c1.markdown(f'<div class="metric-card card-entry"><div class="metric-label" style="color:#4b7fa3;">Ribbon Face 🎀 Entry Point</div><div class="metric-val" style="color:#4b7fa3;">{currency}{entry_price:.2f}</div></div>', unsafe_allow_html=True)
-                c2.markdown(f'<div class="metric-card card-target"><div class="metric-label" style="color:#43875a;">Smiling Fairy 🧚‍♀️ Target Objective</div><div class="metric-val" style="color:#43875a;">{currency}{target_price:.2f}</div></div>', unsafe_allow_html=True)
-                c3.markdown(f'<div class="metric-card card-sl"><div class="metric-label" style="color:#a84e5b;">Blushing Heart 💗 Protective SL</div><div class="metric-val" style="color:#a84e5b;">{currency}{stop_loss_price:.2f}</div></div>', unsafe_allow_html=True)
-                c4.markdown(f'<div class="metric-card card-rsi"><div class="metric-label" style="color:#7b5c96;">Cute Blossom 🌸 {st.session_state.horizon_mode} RSI</div><div class="metric-val" style="color:#7b5c96;">{rsi:.1f}</div></div>', unsafe_allow_html=True)
+                c1.markdown(f'<div class="metric-card card-entry"><div class="metric-label" style="color:#4b7fa3;">🎀 Entry Point</div><div class="metric-val" style="color:#4b7fa3;">{currency}{entry_price:.2f}</div></div>', unsafe_allow_html=True)
+                c2.markdown(f'<div class="metric-card card-target"><div class="metric-label" style="color:#43875a;">🧚‍♀️ Target Objective</div><div class="metric-val" style="color:#43875a;">{currency}{target_price:.2f}</div></div>', unsafe_allow_html=True)
+                c3.markdown(f'<div class="metric-card card-sl"><div class="metric-label" style="color:#a84e5b;">💗 Protective SL</div><div class="metric-val" style="color:#a84e5b;">{currency}{stop_loss_price:.2f}</div></div>', unsafe_allow_html=True)
+                c4.markdown(f'<div class="metric-card card-rsi"><div class="metric-label" style="color:#7b5c96;">🌸 {st.session_state.horizon_mode} RSI</div><div class="metric-val" style="color:#7b5c96;">{rsi:.1f}</div></div>', unsafe_allow_html=True)
                 
                 st.markdown(f'<div class="soft-signal">{signal}</div>', unsafe_allow_html=True)
                 
                 fig = go.Figure(data=[go.Candlestick(x=data.index, open=data['Open'], high=data['High'], low=data['Low'], close=data['Close'], name='Price', increasing_line_color='#6ba686', decreasing_line_color='#d48792')])
-                fig.add_hline(y=entry_price, line_dash="dash", line_color="#4b7fa3", line_width=1.5, annotation_text="Ribbon Face 🎀 Entry Point", annotation_position="top left", annotation_font_color="#4b7fa3")
-                fig.add_hline(y=target_price, line_dash="dash", line_color="#43875a", line_width=1.5, annotation_text="Smiling Fairy 🧚‍♀️
+                fig.add_hline(y=entry_price, line_dash="dash", line_color="#4b7fa3", line_width=1.5, annotation_text="🎀 Entry Point", annotation_position="top left", annotation_font_color="#4b7fa3")
+                fig.add_hline(y=target_price, line_dash="dash", line_color="#43875a", line_width=1.5, annotation_text="🧚‍♀️ Target Level", annotation_position="top left", annotation_font_color="#43875a")
+                fig.add_hline(y=stop_loss_price, line_dash="dash", line_color="#a84e5b", line_width=1.5, annotation_text="💗 Protection SL", annotation_position="top left", annotation_font_color="#a84e5b")
+                
+                fig.update_layout(template='plotly_white', paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='#ffffff', xaxis_rangeslider_visible=False, height=450, margin=dict(l=10, r=10, t=10, b=10))
+                st.plotly_chart(fig, use_container_width=True)
+
+# -----------------------------------------------------------------------------
+# TAB 2: MICRO ANALYSIS SCANNER
+# -----------------------------------------------------------------------------
+with tab_micro:
+    st.markdown("<h4 style='color:#7b5c96;'>🌸 Fairy Garden Micro Matrix Scanner</h4>", unsafe_allow_html=True)
+    st.markdown("""
+    <div class="panel-container">
+        <strong style="color:#7b5c96;">🌸 ALIGNED CRITERIA SCHEMA:</strong><br>
+        • Price Range: <code>₹10 to ₹30</code> | • Trend Parameter: <code>15m Close > 20 EMA</code><br>
+        • Signal Strength: <code>15m RSI > 68</code> | • Daily Cumulative Volume: <code>Today's Vol > 3x (20-Day SMA Vol) & Total > 500k</code>
+    </div>
+    """, unsafe_allow_html=True)
+    st.write("")
+    
+    if st.button("🚀 Execute Micro Matrix Sweep", key="btn_run_micro"):
+        with st.spinner("Syncing data engines with fairytale conditions..."):
+            hits = run_exact_micro_analysis()
+            if hits:
+                st.success(f"Success! Found {len(hits)} alerts matching the algorithm criteria.")
+                for h in hits:
+                    st.markdown(f"""
+                    <div class="metric-card card-target" style="text-align: left; padding: 15px;">
+                        <span style="font-size:18px; font-weight:bold; color:#7b5c96;">🦋 {h['ticker']}</span><br>
+                        • <b>Price Level:</b> ₹{h['price']:.2f} | • <b>15m RSI:</b> {h['rsi']:.1f} | • <b>Day Volume:</b> {h['vol']:,} shares
+                    </div>
+                    """, unsafe_allow_html=True)
+            else:
+                st.info("No stocks currently matching your precise criteria scan. (If checked pre-market, no items carried over the filters from yesterday's close).")
+
+# -----------------------------------------------------------------------------
+# TAB 3: PASTEL AI ASSISTANT HUD
+# -----------------------------------------------------------------------------
+with tab_ai:
+    st.markdown("<h4 style='color:#7b5c96;'>💬 Technical System Advisor</h4>", unsafe_allow_html=True)
+    if "chat_history" not in st.session_state:
+        st.session_state.chat_history = [{"role": "assistant", "content": "Interface set to cozy pastel view. Ask me any parameter questions safely."}]
+        
+    st.markdown("<div class='chat-container'>", unsafe_allow_html=True)
+    for msg in st.session_state.chat_history:
+        with st.chat_message(msg["role"]): st.markdown(msg["content"])
+            
+    if chat_input := st.chat_input("Type a message..."):
+        st.session_state.chat_history.append({"role": "user", "content": chat_input})
+        with st.chat_message("user"): st.markdown(chat_input)
+        
+        q = chat_input.lower()
+        if "stop loss" in q or "sl" in q:
+            reply = "The **Stop Loss (💗)** marks structural levels below localized candle bodies to safeguard capital systematically."
+        elif "target" in q:
+            reply = "The **Target Line (🧚‍♀️)** identifies extension levels calculated by volatility ratios to optimize profit positions."
+        else:
+            reply = "You can view dynamic horizon targets anytime by looking directly inside the main Advanced Chart Reader Tab."
+            
+        st.session_state.chat_history.append({"role": "assistant", "content": reply})
+        with st.chat_message("assistant"): st.markdown(reply)
+        st.rerun()
+    st.markdown("</div>", unsafe_allow_html=True)
+
+# -----------------------------------------------------------------------------
+# TAB 4: RISK MANAGEMENT
+# -----------------------------------------------------------------------------
+with tab_academy:
+    st.markdown("<h4 style='color:#7b5c96;'>📚 Strategic Management Index</h4>", unsafe_allow_html=True)
+    with st.expander("📊 Exposure Allocations"):
+        st.markdown("Sound configurations align setups where the profit distance to **Target (🧚‍♀️)** safely compensates potential exposure down toward the **Stop Loss (💗)** line.")
